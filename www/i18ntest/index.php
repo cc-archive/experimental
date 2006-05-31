@@ -5,6 +5,8 @@
     
     echo gettext("I like having a creative future.");
 
+    echo gettext("One more for the books");
+
     include_once('footer.inc');
 ?>
 
