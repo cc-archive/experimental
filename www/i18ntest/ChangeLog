@@ -1,3 +1,11 @@
+2006-05-31  Jon Phillips <jon@rejon.org>
+
+	* i18ntest/header.inc i18ntest/index.php: new php code ready to push
+	into cchost
+	
+	* i18ntest/Makefile: now builds all the languages and takes into 
+	account merges, etc
+	
 2006-05-26  Jon Phillips <jon@rejon.org>
 
 	* header.inc: put main guts for selecting locale here
