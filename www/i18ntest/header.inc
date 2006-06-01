@@ -236,6 +236,12 @@ $ccLang->init();
 echo "<h3>FILENAME: " . $_SERVER['PHP_SELF'] . "</h3>\n";
 ?>
 
+<h4>Special Tricks</h4>
+
+<ul>
+<li><a href="?update=1">update</a> (reinstantiate objects for sessions)</li>
+</ul>
+
 <h4>Select Locale Preference</h4>
 
 <?php
@@ -261,4 +267,5 @@ foreach ( $ccLang->getPossibleLanguages() as $lang => $value )
 }
 ?>
 </ul>
+
 
