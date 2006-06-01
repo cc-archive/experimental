@@ -18,16 +18,16 @@ msgstr ""
 
 #: index.php:4
 msgid "A string to be translated would go here"
-msgstr "zh_CN A string to be translated would go here"
+msgstr "ccexperimental.localhost zh_CN A string to be translated would go here"
 
 #: index.php:6
 msgid "I like having a creative future."
-msgstr "zh_CN like having a creative future."
+msgstr "ccexperimental.localhost zh_CN like having a creative future."
 
 #: index.php:8
 msgid "One more for the books"
-msgstr "zh_CN One more for the books"
+msgstr "ccexperimental.localhost zh_CN One more for the books"
 
 #: test1.php:4
 msgid "I love remixes."
-msgstr "zh_CN I love remixes."
+msgstr "ccexperimental.localhost zh_CN I love remixes."
