@@ -1,4 +1,4 @@
-<p>Pages</p>
+<h4>Pages</h4>
 
 <ul>
 <li><a href="index.php">index.php</a></li>

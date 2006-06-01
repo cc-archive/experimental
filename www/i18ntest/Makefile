@@ -1,5 +1,18 @@
+#
+# This is a sample Makfile for generating necessary infrastructure for 
+# languages. It is not necessarily the most pretty thing you have ever
+# seen and I'm sure there are a gazillion better ways to do all of this.
+#
+# Copyright 2006, Creative Commons.
+# Copyright 2006, Jon Phillips.
+#
+#
+#
 srcdir = .
 localedir =  locale/default
+testlocaledir = locale/testsite.org
+ccexplocaledir = locale/ccexperimental.localhost
+
 
 POTFILE = messages.pot
 PO_NAME = LC_MESSAGES/messages.po
@@ -7,17 +20,29 @@ MO_NAME = LC_MESSAGES/messages.mo
 POFILES = \
 	$(localedir)/en_US/$(PO_NAME) \
 	$(localedir)/de_DE/$(PO_NAME) \
-	$(localedir)/zh_CN/$(PO_NAME)
-
+	$(localedir)/zh_CN/$(PO_NAME) \
+	$(testlocaledir)/en_US/$(PO_NAME) \
+	$(testlocaledir)/de_DE/$(PO_NAME) \
+	$(testlocaledir)/zh_CN/$(PO_NAME) \
+	$(ccexplocaledir)/en_US/$(PO_NAME) \
+	$(ccexplocaledir)/de_DE/$(PO_NAME) \
+	$(ccexplocaledir)/zh_CN/$(PO_NAME)
+	
 POTFILES = \
 	index.php \
 	test1.php
 
 
 CATALOGS = \
+	$(localedir)/en_US/$(MO_NAME) \
 	$(localedir)/de_DE/$(MO_NAME) \
-	$(localedir)/zh_CN/$(MO_NAME)
-
+	$(localedir)/zh_CN/$(MO_NAME) \
+	$(testlocaledir)/en_US/$(MO_NAME) \
+	$(testlocaledir)/de_DE/$(MO_NAME) \
+	$(testlocaledir)/zh_CN/$(MO_NAME) \
+	$(ccexplocaledir)/en_US/$(MO_NAME) \
+	$(ccexplocaledir)/de_DE/$(MO_NAME) \
+	$(ccexplocaledir)/zh_CN/$(MO_NAME)
 
 INSTALL = /usr/bin/install -c
 INSTALL_DATA = $(INSTALL) -m 644
@@ -50,31 +75,6 @@ $(POFILES):
 
 $(CATALOGS):
 	$(MSGFMT) `dirname $@`/`basename $@ mo`po -o $@ 
-
-#.po.gmo:
-#	file=`echo $* | sed 's,.*/,,'`.gmo \
-#	  && rm -f $$file && $(GMSGFMT) -o $$file $<
-
-#.SUFFIXES:
-#.SUFFIXES: .po .mo .gmo
-
-
-#$(POTFILES):
-#	$(XGETTEXT) *.php
-
-# POTFILES is created from POTFILES.in by stripping comments, empty lines
-# and Intltool tags (enclosed in square brackets), and appending a full
-# relative path to them
-#POTFILES: POTFILES.in
-#	( posrcprefix='$(top_srcdir)/'; \
-#	  rm -f $@-t $@ \
-#	    && (sed -e '/^#/d' 					\
-#		    -e 's/^[[].*] *//' 				\
-#		    -e '/^[ 	]*$$/d' 			\
-#		    -e "s@^@	$$posrcprefix@" $(srcdir)/$@.in	\
-#		| sed -e '$$!s/$$/ \\/') > $@-t \
-#	    && chmod a-w $@-t \
-#	    && mv $@-t $@ )
 
 .po.mo:
 	$(MSGFMT) -o $@ $<
