@@ -1,3 +1,18 @@
+2006-06-06  Jon Phillips <jon@rejon.org>
+
+	* locale/default/de_DE/LC_MESSAGES/messages.po
+	locale/default/zh_CN/LC_MESSAGES/messages.po
+	locale/default/en_US/LC_MESSAGES/messages.po
+	locale/ccexperimental.localhost/de_DE/LC_MESSAGES/messages.po
+	locale/ccexperimental.localhost/zh_CN/LC_MESSAGES/messages.po
+	locale/ccexperimental.localhost/en_US/LC_MESSAGES/messages.po
+	locale/testsite.org/de_DE/LC_MESSAGES/messages.po
+	locale/testsite.org/zh_CN/LC_MESSAGES/messages.po
+	locale/testsite.org/en_US/LC_MESSAGES/messages.po
+	header.inc test1.php index.php Makefile: Added license info for this 
+	code, documented it, tested it some more, and made it even more
+	portable for cchost and others to use.
+
 2006-06-01  Jon Phillips <jon@rejon.org>
 
 	* header.inc footer.inc ChangeLog index.php Makefile: Got everything
@@ -14,10 +29,10 @@
 
 2006-05-31  Jon Phillips <jon@rejon.org>
 
-	* i18ntest/header.inc i18ntest/index.php: new php code ready to push
+	* header.inc index.php: new php code ready to push
 	into cchost
 	
-	* i18ntest/Makefile: now builds all the languages and takes into 
+	* Makefile: now builds all the languages and takes into 
 	account merges, etc
 	
 2006-05-26  Jon Phillips <jon@rejon.org>

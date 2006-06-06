@@ -1,6 +1,7 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
+# Copyright (C) 2006 Creative Commons <info@creativecommons.org>
+# Copyright (C) 2006 Jon Phillips <jon@rejon.org>
+# This file is distributed under the same license as the cchost package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
@@ -8,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-05-29 04:24-0700\n"
+"POT-Creation-Date: 2006-06-06 01:24-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -31,3 +32,7 @@ msgstr "US One more for the books"
 #: test1.php:4
 msgid "I love remixes."
 msgstr "US I love remixes."
+
+#: test1.php:6
+msgid "sample me"
+msgstr ""
