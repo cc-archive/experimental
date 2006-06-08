@@ -1,4 +1,25 @@
 2006-06-06  Jon Phillips <jon@rejon.org>
+	* locale/default/de_DE/LC_MESSAGES/messages.po
+	locale/default/zh_CN/LC_MESSAGES/messages.po
+	locale/default/en_US/LC_MESSAGES/messages.po
+	locale/ccexperimental.localhost/de_DE/LC_MESSAGES/messages.po
+	locale/ccexperimental.localhost/zh_CN/LC_MESSAGES/messages.po
+	locale/ccexperimental.localhost/en_US/LC_MESSAGES/messages.po
+	locale/testsite.org/de_DE/LC_MESSAGES/messages.po
+	locale/testsite.org/zh_CN/LC_MESSAGES/messages.po
+	locale/testsite.org/en_US/LC_MESSAGES/messages.po
+	header.inc ChangeLog Makefile: Final destiny is for final fixes
+
+	* AUTHORS POTFILES ChangeLog NOTES POTFILES.in cc-language.php
+	Makefile.language header.inc.backup COPYING print_potfiles.sh
+	header.inc.backup: Added these files to svn
+
+
+2006-06-06  Jon Phillips <jon@rejon.org>
+
+	* header.inc: Updated documentation and cleaned up defines.
+
+2006-06-06  Jon Phillips <jon@rejon.org>
 
 	* locale/default/de_DE/LC_MESSAGES/messages.po
 	locale/default/zh_CN/LC_MESSAGES/messages.po

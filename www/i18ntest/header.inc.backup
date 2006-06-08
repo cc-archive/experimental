@@ -1,0 +1,186 @@
+<?php
+// Simple language tests for i18n with php
+
+//$languages = array('en' => array('English','English'), 
+//                   'zh_CN' => array('China-Mainland', 'China-Mainland'));
+
+# $languages = array('en_EN', 'de_DE', 'zh_CN');
+
+// default language is general english and not en_US
+define('DEFAULT_LANG', '');
+define('DEBUG', true);
+define('DEFAULT_LOCALE', 'locale');
+define('DEFAULT_LOCALE_PREF', 'default');
+define('DEFAULT_LOCALE_PREF_DIR', DEFAULT_LOCALE . '/' . DEFAULT_LOCALE_PREF);
+
+define('PROJECT_NAME', 'testsite.org');
+
+// global array for languages
+$languages = array();
+
+
+// TODO: Come up with a sensible way to track current default locale pref and 
+// current language
+
+
+function load_languages ($locale_dir = DEFAULT_LOCALE, 
+                         $catalog_fn = "messages.mo") 
+{
+    global $languages;
+    
+    // read in each locale preference folder
+    $locale_dirs = glob( $locale_dir . '/*', GLOB_ONLYDIR ); 
+
+    if ( count($locale_dirs) == 0 )
+        return false;
+
+    foreach ( $locale_dirs as $dir ) {
+	// Read in each folder (language) for consideration
+        $lang_dirs = glob( "$dir/*", GLOB_ONLYDIR );
+	// if the locale pref. folder has no languages, then don't load it
+	if ( count($lang_dirs) == 0 )
+	    continue;
+	$locale_pref = basename($dir);
+	$languages['locale'][$locale_pref] = array('path' => $dir);
+
+	foreach ( $lang_dirs as $lang_dir ) {
+	    $lang_name = basename($lang_dir);
+	    // if there is no readable mo file, then get the hell out
+            if ( is_readable( "$lang_dir/LC_MESSAGES/$catalog_fn" ) ) {
+		$languages['locale'][$locale_pref]['language'][$lang_name] = 
+		    array('path' => $lang_dir); 
+	    }
+	}
+    }
+    // TODO: Need one more check here of the array and if there is nothing
+    // usable, then should return a false here and remove that bad shit from
+    // the global array.
+
+    return true;
+}
+
+/**
+ *
+ * This is where one should set the default locale and language upon startup
+ * of the app.
+ */
+function set_locale ($locale_pref = DEFAULT_LOCALE_PREF)
+{
+    global $languages;
+    
+    $locale_setting = &$languages['setting']['locale'];
+
+
+    // conditions for not attempting anything
+    if ( $locale_pref == $locale_setting )
+        return true;
+
+    $locale_tests = array(&$locale_pref, 
+                          &$_SERVER['HTTP_HOST'], 
+			  PROJECT_NAME);
+
+    // test to see if we can set to some default in order of the array
+    foreach ( $locale_tests as $test )
+    {
+        if ( isset($languages['locale'][$test]) ) {
+	        $locale_setting = $test;
+	        return true;
+        }
+    }
+
+    // if all else fails, then just set it to normal
+    // $locale_setting = DEFAULT_LOCALE_PREF;
+    return false;
+}
+
+function set_language ($lang_pref = DEFAULT_LANG)
+{
+    global $languages;
+
+    $lang_setting = &$languages['setting']['language'];
+   
+    $locale_setting = &$languages['setting']['locale'];
+  
+    $lang_possible = 
+        &$languages['locale'][ $locale_setting  ]['language'];
+
+    if ( $lang_pref == $lang_setting )
+        return true;
+
+    $lang_tests = array(&$lang_pref, 
+                        $lang_pref . "_" . strtoupper($lang_pref));
+
+    // test to see if we can set to some default in order of the array
+    foreach ( $lang_tests as $test )
+    {
+        if ( isset($lang_possible[$test]) ) {
+	        $lang_setting = $test;
+	        return true;
+        }
+    }
+
+    // if all else fails set it to the default
+    // $lang_setting = DEFAULT_LANG;
+    return false;
+}
+
+function debug_languages ()
+{
+    global $languages;
+
+    echo "<pre>";
+    print_r( $languages );
+    echo "</pre>";
+}
+
+function debug_var (&$var)
+{
+    echo "<pre>";
+    print_r( $var );
+    echo "</pre>";
+}
+
+load_languages();
+set_locale();
+// set_language();
+// debug_languages();
+
+// set to what user wants but if not, the function makes default
+//if ($_REQUEST['lang'] && in_array($_REQUEST['lang'],$languages))
+// set_language(&$_REQUEST['lang']);
+
+set_language(&$_REQUEST['lang']);
+
+// debug_languages();
+
+putenv("LANG=" . $languages['setting']['language']); 
+setlocale(LC_ALL, $languages['setting']['language']);
+
+// Set the text domain as 'messages'
+// echo "<p>" . DEFAULT_LOCALE . "/" . $languages['setting']['locale'] . "</p>";
+
+$domain = 'messages';
+bindtextdomain($domain, DEFAULT_LOCALE . "/" . $languages['setting']['locale']);
+textdomain($domain);
+
+
+?>
+
+<h4>Select Language</h4>
+
+<ul>
+<?php
+echo "Current Language: <b>" . $languages['setting']['language'] . "</b>\n";
+
+
+foreach ($languages['locale'][ $languages['setting']['locale'] ]['language'] 
+         as $lang => $value )
+{
+    echo "<li><a href=\"?lang=$lang\">$lang</a></li>\n";
+}
+?>
+</ul>
+
+<?php 
+    echo "<h3>" . $_SERVER['PHP_SELF'] . "</h3>\n";
+?>

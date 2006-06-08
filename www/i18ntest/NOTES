@@ -1,0 +1,5 @@
+* How does one deal with plural strings with _()
+
+* READY TO MOVE ON THE REST OF CCHOST i18n
+** oh, gong to just calle the Makefile.locale from master so can keep 
+   stuff as separate as possible

@@ -1,0 +1,10 @@
+# List of source files containing translatable strings.
+# Please keep this file sorted alphabetically.
+#
+# Put the following line at the beginning of a line that is xml 
+# which will be internationalized 
+# [type: gettext/xml]
+#
+[encoding: UTF-8]
+index.php
+test1.php
